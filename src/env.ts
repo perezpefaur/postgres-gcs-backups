@@ -1,4 +1,4 @@
-import { envsafe, str, bool } from "envsafe";
+import { bool, envsafe, str } from "envsafe";
 
 export const env = envsafe({
   GOOGLE_PROJECT_ID: str(),
@@ -6,9 +6,6 @@ export const env = envsafe({
     desc: "JSON string of the service account .json key. See: https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating",
   }),
   GCS_BUCKET: str(),
-  BACKUP_DATABASE_URL: str({
-    desc: "The connection string of the database to backup. See: https://docs.railway.app/databases/postgresql#variables",
-  }),
   BACKUP_CRON_SCHEDULE: str({
     desc: "The cron schedule to run the backup on.",
     default: "0 5 * * *",
