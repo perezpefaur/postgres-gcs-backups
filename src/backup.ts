@@ -40,20 +40,6 @@ const backupPgData = async (path: string) => {
   console.log("PostgreSQL data directory backed up...");
 };
 
-const deleteFile = async (path: string) => {
-  console.log("Deleting file...");
-  await new Promise((resolve, reject) => {
-    unlink(path, (err) => {
-      if (err) {
-        reject({ error: JSON.stringify(err) });
-        return;
-      }
-      resolve(undefined);
-    });
-  });
-  console.log("File deleted...");
-};
-
 export const backup = async () => {
   console.log("Initiating PostgreSQL data backup...");
 
@@ -64,7 +50,7 @@ export const backup = async () => {
 
   await backupPgData(filepath);
   await uploadToGCS({ name: filename, path: filepath });
-  await deleteFile(filepath);
+  //await deleteFile(filepath);
 
   console.log("PostgreSQL data backup complete...");
 };
